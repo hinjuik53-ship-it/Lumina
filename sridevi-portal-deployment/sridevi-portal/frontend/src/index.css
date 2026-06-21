@@ -4,8 +4,11 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    @apply overflow-x-hidden;
+  }
   body {
-    @apply bg-[#09090b] text-zinc-100 antialiased;
+    @apply bg-[#09090b] text-zinc-100 antialiased overflow-x-hidden;
     font-family: 'Inter', system-ui, sans-serif;
   }
 }
