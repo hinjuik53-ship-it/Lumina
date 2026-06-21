@@ -50,7 +50,7 @@ export const Attendance = () => {
           return (
             <GlassCard key={record.code} delay={i * 0.05} className="p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
               {/* Subject info */}
-              <div className="flex items-center gap-4 min-w-[280px]">
+              <div className="flex items-center gap-4 lg:min-w-[280px]">
                 <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 ${
                   isSafe ? 'bg-emerald-500/10 text-emerald-500' : 'bg-red-500/10 text-red-500'
                 }`}>
@@ -84,7 +84,7 @@ export const Attendance = () => {
               </div>
 
               {/* Stats */}
-              <div className="grid grid-cols-2 gap-8 lg:gap-12 min-w-[200px]">
+              <div className="grid grid-cols-2 gap-8 lg:gap-12 lg:min-w-[200px]">
                 <div className="text-center lg:text-left">
                   <p className="text-[10px] text-zinc-500 uppercase font-black tracking-widest mb-1">Can Miss</p>
                   <p className={`text-2xl font-black ${margin > 0 ? 'text-emerald-400' : 'text-zinc-700'}`}>
