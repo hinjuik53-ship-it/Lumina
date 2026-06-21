@@ -10,13 +10,13 @@ const menuItems = [
   { id: 'profile',         label: 'My Profile',     icon: User },
 ]
 
-export const Sidebar = ({ activeTab, setActiveTab, onLogout, student }) => {
+export const Sidebar = ({ activeTab, setActiveTab, onLogout, student, forceVisible = false }) => {
   const name = student?.name || 'Student'
   const rollNumber = student?.rollNumber || ''
   const initials = name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()
 
   return (
-    <aside className="fixed left-0 top-0 h-screen w-72 bg-zinc-950 border-r border-zinc-800 p-6 flex flex-col z-50">
+    <aside className={`${forceVisible ? 'flex w-full' : 'hidden lg:flex fixed left-0 top-0 w-72 z-50'} h-screen bg-zinc-950 border-r border-zinc-800 p-6 flex-col`}>
       {/* Logo */}
       <div className="flex items-center gap-3 mb-8 px-2">
         <div className="w-10 h-10 bg-brand-600 rounded-xl flex items-center justify-center shadow-lg shadow-brand-500/20">
