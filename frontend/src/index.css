@@ -32,3 +32,22 @@
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 10px; }
 ::-webkit-scrollbar-thumb:hover { background: #3f3f46; }
+
+/* Shrink + reposition the Chatbase widget bubble on mobile so it doesn't
+   cover the bottom nav bar's Profile icon. Desktop is untouched. */
+@media (max-width: 1023px) {
+  #chatbase-bubble-button,
+  iframe[id^="chatbase-bubble"],
+  div[id^="chatbase-bubble"] {
+    width: 48px !important;
+    height: 48px !important;
+    bottom: 84px !important;
+    right: 16px !important;
+  }
+  #chatbase-bubble-window,
+  iframe[id^="chatbase-bubble-window"] {
+    bottom: 140px !important;
+    right: 16px !important;
+    max-height: 70vh !important;
+  }
+}

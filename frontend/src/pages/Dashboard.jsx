@@ -36,20 +36,20 @@ export const Dashboard = ({ student }) => {
           </h2>
           <p className="text-zinc-400 mt-2 font-medium">Here's a quick overview of your academic status.</p>
         </div>
-        <div className="flex items-center gap-8 bg-zinc-900/50 border border-zinc-800 p-5 rounded-2xl">
-          <div className="text-right">
+        <div className="flex items-center gap-4 sm:gap-8 bg-zinc-900/50 border border-zinc-800 p-4 sm:p-5 rounded-2xl w-full lg:w-auto overflow-x-auto">
+          <div className="text-right shrink-0">
             <p className="text-[10px] text-zinc-500 font-black uppercase tracking-widest">Current CGPA</p>
-            <p className="text-3xl font-black text-brand-400">{cgpa}</p>
+            <p className="text-2xl sm:text-3xl font-black text-brand-400">{cgpa}</p>
           </div>
-          <div className="w-px h-10 bg-zinc-800" />
-          <div className="text-right">
+          <div className="w-px h-10 bg-zinc-800 shrink-0" />
+          <div className="text-right shrink-0">
             <p className="text-[10px] text-zinc-500 font-black uppercase tracking-widest">Attendance</p>
-            <p className={`text-3xl font-black ${overallAtt >= 75 ? 'text-emerald-400' : 'text-red-400'}`}>{overallAtt}%</p>
+            <p className={`text-2xl sm:text-3xl font-black ${overallAtt >= 75 ? 'text-emerald-400' : 'text-red-400'}`}>{overallAtt}%</p>
           </div>
-          <div className="w-px h-10 bg-zinc-800" />
-          <div className="text-right">
+          <div className="w-px h-10 bg-zinc-800 shrink-0" />
+          <div className="text-right shrink-0">
             <p className="text-[10px] text-zinc-500 font-black uppercase tracking-widest">SGPA</p>
-            <p className="text-3xl font-black text-blue-400">{sgpa}</p>
+            <p className="text-2xl sm:text-3xl font-black text-blue-400">{sgpa}</p>
           </div>
         </div>
       </header>
