@@ -9,8 +9,9 @@ import { Timetable }          from './pages/Timetable'
 import { Profile }            from './pages/Profile'
 import { GradePredictorPage } from './pages/GradePredictorPage'
 import { CGPAPredictor }      from './pages/CGPAPredictor'
-import { Search, Bell }       from 'lucide-react'
 import { MOCK_STUDENT }       from './data/mockData'
+import ChatbotWidget from "./components/chatbot/ChatbotWidget";
+import { Search, Bell, Menu, X } from 'lucide-react'
 
 // Page title map
 const PAGE_TITLES = {
@@ -33,6 +34,7 @@ export default function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(savedLogin && !!savedStudent)
   const [student, setStudent]                 = useState(savedLogin && !!savedStudent ? savedStudent : null)
   const [activeTab, setActiveTab]             = useState('dashboard')
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   function handleLogin(studentData) {
     // studentData comes from the backend response; merge with defaults for any missing fields
@@ -74,11 +76,45 @@ export default function App() {
         onLogout={handleLogout}
         student={student}
       />
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-50 lg:hidden">
+          <div
+            className="absolute inset-0 bg-black/50"
+            onClick={() => setMobileMenuOpen(false)}
+          />
 
-      <main className="flex-1 ml-72 min-h-screen relative">
+          <div className="absolute left-0 top-0 h-full w-72 max-w-[85vw] bg-zinc-950 border-r border-zinc-800">
+            <button
+              onClick={() => setMobileMenuOpen(false)}
+              className="absolute top-6 right-4 p-2 rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white z-10"
+            >
+              <X size={16} />
+            </button>
+            <Sidebar
+              forceVisible
+              activeTab={activeTab}
+              setActiveTab={(tab) => {
+                setActiveTab(tab)
+                setMobileMenuOpen(false)
+              }}
+              onLogout={handleLogout}
+              student={student}
+            />
+          </div>
+        </div>
+      )}
+
+      <main className="flex-1 lg:ml-72 min-h-screen relative">
         {/* Top bar */}
         <header className="sticky top-0 z-40 w-full h-[72px] bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800 px-8 flex items-center justify-between">
           <div className="flex items-center gap-4">
+
+  <button
+    onClick={() => setMobileMenuOpen(true)}
+    className="lg:hidden p-2 rounded-lg bg-zinc-900 border border-zinc-800"
+  >
+    <Menu size={18} />
+  </button>
             <AnimatePresence mode="wait">
               <motion.h2
                 key={activeTab}
@@ -131,7 +167,7 @@ export default function App() {
         </header>
 
         {/* Page content */}
-        <div className="p-8 max-w-7xl mx-auto">
+        <div className="px-4 py-4 lg:p-8 max-w-7xl mx-auto pb-24">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
@@ -149,6 +185,28 @@ export default function App() {
         <div className="fixed top-0 right-0 w-[500px] h-[500px] bg-brand-500/4 blur-[120px] rounded-full -z-10 pointer-events-none" />
         <div className="fixed bottom-0 left-72 w-[500px] h-[500px] bg-cyan-500/4 blur-[120px] rounded-full -z-10 pointer-events-none" />
       </main>
+      <div className="fixed bottom-0 left-0 right-0 lg:hidden bg-zinc-950 border-t border-zinc-800 z-40">
+  <div className="grid grid-cols-4 py-3">
+
+    <button onClick={() => setActiveTab('dashboard')}>
+      🏠
+    </button>
+
+    <button onClick={() => setActiveTab('attendance')}>
+      📊
+    </button>
+
+    <button onClick={() => setActiveTab('timetable')}>
+      📅
+    </button>
+
+    <button onClick={() => setActiveTab('profile')}>
+      👤
+    </button>
+
+  </div>
+</div>
+      <ChatbotWidget />
     </div>
   )
 }
